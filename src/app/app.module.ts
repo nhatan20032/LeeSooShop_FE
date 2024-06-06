@@ -7,6 +7,7 @@ import { UserDropdownComponent } from './components/dropdowns/user-dropdown/user
 import { FooterAdminComponent } from './components/footers/footer-admin/footer-admin.component';
 import { AdminNavbarComponent } from './components/navbars/admin-navbar/admin-navbar.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { AdminComponent } from './layouts/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     FooterAdminComponent,
     AdminNavbarComponent,
     SidebarComponent,
+    AdminComponent,
     AppComponent
   ],
   imports: [
