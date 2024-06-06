@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { UserDropdownComponent } from './components/dropdowns/user-dropdown/user-dropdown.component';
 import { FooterAdminComponent } from './components/footers/footer-admin/footer-admin.component';
 import { AdminNavbarComponent } from './components/navbars/admin-navbar/admin-navbar.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
     UserDropdownComponent,
     FooterAdminComponent,
     AdminNavbarComponent,
+    SidebarComponent,
     AppComponent
   ],
   imports: [
