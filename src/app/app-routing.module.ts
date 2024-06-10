@@ -9,6 +9,9 @@ import { BrandComponent } from './views/admin/brand/brand.component';
 import { AgeComponent } from './views/admin/age/age.component';
 import { DiscountProductComponent } from './views/admin/discounts/discount-product/discount-product.component';
 import { DiscountCatalogComponent } from './views/admin/discounts/discount-catalog/discount-catalog.component';
+import { UserInfoComponent } from './views/admin/users/user-info/user-info.component';
+import { UserAdminComponent } from './views/admin/users/user-admin/user-admin.component';
+import { BannerComponent } from './views/admin/banner/banner.component';
 
 const routes: Routes = [
   {
@@ -23,6 +26,9 @@ const routes: Routes = [
       { path: "catalog", component: CatalogComponent },
       { path: "brand", component: BrandComponent },
       { path: "age", component: AgeComponent },
+      { path: "user-info", component: UserInfoComponent },
+      { path: "user-admin", component: UserAdminComponent },
+      { path: "banner", component: BannerComponent },
       { path: "", redirectTo: "home-page", pathMatch: "full" },
     ],
   },
