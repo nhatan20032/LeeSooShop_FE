@@ -12,6 +12,7 @@ import { CardStatsComponent } from './components/cards/card-stats/card-stats.com
 import { CardPageVisitsComponent } from './components/cards/card-page-visits/card-page-visits.component';
 import { CardSocialTrafficComponent } from './components/cards/card-social-traffic/card-social-traffic.component';
 import { HomePageComponent } from './views/admin/home-page/home-page.component';
+import { ProductComponent } from './views/admin/product/product.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { HomePageComponent } from './views/admin/home-page/home-page.component';
     CardPageVisitsComponent,
     CardSocialTrafficComponent,
     HomePageComponent,
+    ProductComponent,
     AppComponent
   ],
   imports: [
