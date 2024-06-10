@@ -14,6 +14,10 @@ import { CardSocialTrafficComponent } from './components/cards/card-social-traff
 import { HomePageComponent } from './views/admin/home-page/home-page.component';
 import { ProductComponent } from './views/admin/product/product.component';
 import { GenderComponent } from './views/admin/gender/gender.component';
+import { CatalogComponent } from './views/admin/catalog/catalog.component';
+import { BrandComponent } from './views/admin/brand/brand.component';
+import { AgeComponent } from './views/admin/age/age.component';
+import { DiscountProductComponent } from './views/admin/discounts/discount-product/discount-product.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +32,10 @@ import { GenderComponent } from './views/admin/gender/gender.component';
     HomePageComponent,
     ProductComponent,
     GenderComponent,
+    DiscountProductComponent,
+    CatalogComponent,
+    BrandComponent,
+    AgeComponent,
     AppComponent
   ],
   imports: [
