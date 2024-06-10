@@ -13,6 +13,7 @@ import { CardPageVisitsComponent } from './components/cards/card-page-visits/car
 import { CardSocialTrafficComponent } from './components/cards/card-social-traffic/card-social-traffic.component';
 import { HomePageComponent } from './views/admin/home-page/home-page.component';
 import { ProductComponent } from './views/admin/product/product.component';
+import { GenderComponent } from './views/admin/gender/gender.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { ProductComponent } from './views/admin/product/product.component';
     CardSocialTrafficComponent,
     HomePageComponent,
     ProductComponent,
+    GenderComponent,
     AppComponent
   ],
   imports: [
