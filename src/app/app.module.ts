@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
+
 import { AppComponent } from './app.component';
 import { UserDropdownComponent } from './components/dropdowns/user-dropdown/user-dropdown.component';
 import { AdminNavbarComponent } from './components/navbars/admin-navbar/admin-navbar.component';
@@ -18,6 +20,7 @@ import { BrandComponent } from './views/admin/brand/brand.component';
 import { AgeComponent } from './views/admin/age/age.component';
 import { DiscountProductComponent } from './views/admin/discounts/discount-product/discount-product.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { CatalogServices } from './components/tables/catalog-table/catalog-data.services';
 
 @NgModule({
   declarations: [
@@ -39,10 +42,12 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    CatalogServices
   ],
   bootstrap: [AppComponent]
 })

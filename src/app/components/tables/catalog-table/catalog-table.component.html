@@ -1,36 +1,47 @@
 <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
     <div class="mat-elevation-z8">
         <table mat-table [dataSource]="dataSource">
-            <!-- Position Column -->
-            <ng-container matColumnDef="position">
+            <!-- id Column -->
+            <ng-container matColumnDef="id">
                 <th mat-header-cell *matHeaderCellDef> No. </th>
-                <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
             </ng-container>
 
-            <!-- Name Column -->
-            <ng-container matColumnDef="name">
+            <!-- parent_id Column -->
+            <ng-container matColumnDef="parent_id">
+                <th mat-header-cell *matHeaderCellDef> Id danh mục cha </th>
+                <td mat-cell *matCellDef="let element"> {{element.parent_id}} </td>
+            </ng-container>
+
+            <!-- parent_title Column -->
+            <ng-container matColumnDef="parent_title">
                 <th mat-header-cell *matHeaderCellDef> Danh mục cha </th>
-                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.parent_title}} </td>
             </ng-container>
 
-            <!-- Weight Column -->
-            <ng-container matColumnDef="weight">
-                <th mat-header-cell *matHeaderCellDef> Tiêu đề </th>
-                <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+            <!-- catalog_title Column -->
+            <ng-container matColumnDef="catalog_title">
+                <th mat-header-cell *matHeaderCellDef> Tên danh mục </th>
+                <td mat-cell *matCellDef="let element"> {{element.catalog_title}} </td>
             </ng-container>
 
             <!-- Symbol Column -->
-            <ng-container matColumnDef="symbol">
+            <ng-container matColumnDef="description">
                 <th mat-header-cell *matHeaderCellDef> Mô tả </th>
-                <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef> Hành động </th>
+                <td mat-cell *matCellDef="let element"> </td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
 
-        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
-            aria-label="Select page of periodic elements">
+        <mat-paginator [length]="totalElements" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"
+            showFirstLastButtons aria-label="Select page of periodic elements">
         </mat-paginator>
     </div>
 </div>
