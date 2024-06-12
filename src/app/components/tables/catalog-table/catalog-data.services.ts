@@ -24,6 +24,15 @@ export class CatalogServices {
 
     constructor(private http: HttpClient) { }
 
+    getParentElements(): Observable<{ total: number, data: CatalogElement[] }> {
+        return this.http.get<ApiResponse>(`${this.apiUrl}/Get_All_Parent_Catalog`).pipe(
+            map(response => ({
+                total: response.recordsTotal,
+                data: response.data
+            }))
+        );
+    }
+
     getElements(offset: number, limit: number, search: string): Observable<{ total: number, data: CatalogElement[] }> {
         let params = new HttpParams()
             .set('offset', offset.toString())

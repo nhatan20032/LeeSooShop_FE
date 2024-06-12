@@ -1,4 +1,4 @@
-import { Component, Inject } from "@angular/core";
+import { Component, Inject, OnInit } from "@angular/core";
 import {
     MAT_DIALOG_DATA,
     MatDialogRef,
@@ -8,20 +8,18 @@ import {
     MatDialogClose,
 } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { CatalogElement } from "../../../tables/catalog-table/catalog-data.services";
+import { CatalogElement, CatalogServices } from "../../../tables/catalog-table/catalog-data.services";
 import { MatSelectModule } from '@angular/material/select';
-interface Food {
-    value: string;
-    viewValue: string;
-}
 @Component({
     selector: "app-modified-dialog",
     templateUrl: "./modified-dialog.component.html",
     standalone: true,
     imports: [
+        CommonModule,
         MatFormFieldModule,
         MatInputModule,
         FormsModule,
@@ -33,16 +31,25 @@ interface Food {
         MatSelectModule
     ],
 })
-export class ModifiedDialogComponent {
+export class ModifiedDialogComponent implements OnInit {
+    catalogs: CatalogElement[] = [];
+    selectedCatalog: number | null = null;
     constructor(
         public dialogRef: MatDialogRef<ModifiedDialogComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: CatalogElement
+        @Inject(MAT_DIALOG_DATA) public data: CatalogElement,
+        private dataService: CatalogServices
     ) { }
-    foods: Food[] = [
-        { value: 'steak-0', viewValue: 'Steak' },
-        { value: 'pizza-1', viewValue: 'Pizza' },
-        { value: 'tacos-2', viewValue: 'Tacos' },
-    ];
+    ngOnInit(): void {
+        this.loadCatalogs();
+        this.selectedCatalog = this.data.parent_id;
+    }
+    loadCatalogs(): void {
+        this.dataService.getParentElements().subscribe(response => {
+            this.catalogs = response.data;
+        }, error => {
+            console.error('Error loading catalogs', error);
+        });
+    }
     onNoClick(): void {
         this.dialogRef.close();
     }

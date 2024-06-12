@@ -5,22 +5,22 @@
 <mat-dialog-content>
     <mat-form-field class="w-full">
         <mat-label>Danh mục cha</mat-label>
-        <mat-select>
-            @for (food of foods; track food) {
-            <mat-option [value]="food.value">{{food.viewValue}}</mat-option>
-            }
+        <mat-select [(ngModel)]="selectedCatalog">
+            <mat-option *ngFor="let catalog of catalogs" [value]="catalog.id">
+                {{catalog.catalog_title}}
+            </mat-option>
         </mat-select>
     </mat-form-field>
     <mat-form-field class="w-full">
         <mat-label>Tên danh mục</mat-label>
-        <input matInput>
+        <input matInput [value]="data.catalog_title">
     </mat-form-field>
     <mat-form-field class="w-full">
         <mat-label>Mô tả</mat-label>
-        <textarea matInput></textarea>
+        <textarea matInput [value]="data.description"></textarea>
     </mat-form-field>
 </mat-dialog-content>
-<mat-dialog-actions>
+<mat-dialog-actions align="end">
     <button mat-button (click)="onNoClick()">No Thanks</button>
     <button mat-button [mat-dialog-close]="" cdkFocusInitial>Ok</button>
 </mat-dialog-actions>
