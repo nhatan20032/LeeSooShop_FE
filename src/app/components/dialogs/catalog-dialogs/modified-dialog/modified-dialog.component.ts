@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { CatalogElement, CatalogServices } from "../../../tables/catalog-table/catalog-data.services";
+import { CatalogElement, CatalogServices, CatalogData } from "../../../tables/catalog-table/catalog-data.services";
 import { MatSelectModule } from '@angular/material/select';
 @Component({
     selector: "app-modified-dialog",
@@ -34,6 +34,7 @@ import { MatSelectModule } from '@angular/material/select';
 export class ModifiedDialogComponent implements OnInit {
     catalogs: CatalogElement[] = [];
     selectedCatalog: number | null = null;
+    default_title: string = this.data.catalog_title
     constructor(
         public dialogRef: MatDialogRef<ModifiedDialogComponent>,
         @Inject(MAT_DIALOG_DATA) public data: CatalogElement,
@@ -52,5 +53,23 @@ export class ModifiedDialogComponent implements OnInit {
     }
     onNoClick(): void {
         this.dialogRef.close();
+    }
+
+    onEdit(): void {
+        const updatedCatalog: CatalogData = {
+            id: this.data.id,
+            parent_id: this.selectedCatalog,
+            title: this.data.catalog_title,
+            description: this.data.description
+        };
+        this.dataService.modifiedCatalog(updatedCatalog).subscribe(
+            response => {
+                console.log("Catalog created successfully", response);
+                this.dialogRef.close(updatedCatalog);
+            },
+            error => {
+                console.error("Error edit catalog", error, updatedCatalog);
+            }
+        );
     }
 }

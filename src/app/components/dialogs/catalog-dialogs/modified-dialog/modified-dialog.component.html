@@ -1,8 +1,12 @@
 <h2 mat-dialog-title>
     Chỉnh sửa danh mục:
-    <span class="text-red-500">{{data.catalog_title}}</span>
+    <span class="text-red-500">{{default_title}}</span>
 </h2>
 <mat-dialog-content>
+    <mat-form-field class="w-full">
+        <mat-label>No.</mat-label>
+        <input matInput [value]="data.id" [(ngModel)]="data.id" disabled="true">
+    </mat-form-field>
     <mat-form-field class="w-full">
         <mat-label>Danh mục cha</mat-label>
         <mat-select [(ngModel)]="selectedCatalog">
@@ -13,14 +17,23 @@
     </mat-form-field>
     <mat-form-field class="w-full">
         <mat-label>Tên danh mục</mat-label>
-        <input matInput [value]="data.catalog_title">
+        <input matInput [value]="data.catalog_title" [(ngModel)]="data.catalog_title">
     </mat-form-field>
     <mat-form-field class="w-full">
         <mat-label>Mô tả</mat-label>
-        <textarea matInput [value]="data.description"></textarea>
+        <textarea matInput [value]="data.description" [(ngModel)]="data.description"></textarea>
     </mat-form-field>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-    <button mat-button (click)="onNoClick()">No Thanks</button>
-    <button mat-button [mat-dialog-close]="" cdkFocusInitial>Ok</button>
+    <button (click)="onNoClick()" class=" align-middle select-none font-sans font-bold text-center uppercase transition-all
+                            disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6
+                            rounded-lg bg-red-500 text-white shadow-md shadow-gray-900/10 hover:shadow-lg mr-3
+                            hover:shadow-gray-900/20 active:opacity-[0.85]" type="button">
+        <i class="fa-solid fa-ban"></i>
+    </button>
+    <button (click)="onEdit()"
+        class="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-yellow-500 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85]"
+        type="button">
+        <i class="fa-solid fa-check"></i>
+    </button>
 </mat-dialog-actions>

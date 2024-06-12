@@ -11,6 +11,14 @@ export interface CatalogElement {
     description: string;
 }
 
+export interface CatalogData {
+    id: number;
+    parent_id: number | null;
+    title: string;
+    description: string;
+}
+
+
 interface ApiResponse {
     recordsTotal: number;
     data: CatalogElement[];
@@ -45,5 +53,9 @@ export class CatalogServices {
                 data: response.data
             }))
         );
+    }
+
+    modifiedCatalog(catalog: CatalogData): Observable<any> {
+        return this.http.put<any>(`${this.apiUrl}/Update`, catalog);
     }
 }

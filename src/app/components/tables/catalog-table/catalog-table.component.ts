@@ -34,8 +34,10 @@ export class CatalogTableComponent implements AfterViewInit, OnInit {
             data: element
         });
 
-        dialogRef.afterClosed().subscribe(result => {
-            console.log('The dialog was closed');
+        dialogRef.afterClosed().subscribe((result: CatalogElement) => {
+            if (result) {
+                this.loadElements(0, this.paginator.pageSize, this.search);
+            }
         });
     }
 
@@ -52,7 +54,6 @@ export class CatalogTableComponent implements AfterViewInit, OnInit {
             (response: any) => {
                 this.dataSource.data = response.data;
                 this.totalElements = response.total;
-                console.log(response);
             }
         );
     }
