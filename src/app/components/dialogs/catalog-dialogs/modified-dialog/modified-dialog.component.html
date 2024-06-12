@@ -1,0 +1,26 @@
+<h2 mat-dialog-title>
+    Chỉnh sửa danh mục:
+    <span class="text-red-500">{{data.catalog_title}}</span>
+</h2>
+<mat-dialog-content>
+    <mat-form-field class="w-full">
+        <mat-label>Danh mục cha</mat-label>
+        <mat-select>
+            @for (food of foods; track food) {
+            <mat-option [value]="food.value">{{food.viewValue}}</mat-option>
+            }
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="w-full">
+        <mat-label>Tên danh mục</mat-label>
+        <input matInput>
+    </mat-form-field>
+    <mat-form-field class="w-full">
+        <mat-label>Mô tả</mat-label>
+        <textarea matInput></textarea>
+    </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button [mat-dialog-close]="" cdkFocusInitial>Ok</button>
+</mat-dialog-actions>

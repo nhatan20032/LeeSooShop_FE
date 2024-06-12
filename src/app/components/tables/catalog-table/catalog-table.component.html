@@ -1,16 +1,10 @@
-<div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
+<div class="relative flex flex-col min-w-0 break-words bg-white mb-6 shadow-lg">
     <div class="mat-elevation-z8">
         <table mat-table [dataSource]="dataSource">
             <!-- id Column -->
             <ng-container matColumnDef="id">
                 <th mat-header-cell *matHeaderCellDef> No. </th>
                 <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-            </ng-container>
-
-            <!-- parent_id Column -->
-            <ng-container matColumnDef="parent_id">
-                <th mat-header-cell *matHeaderCellDef> Id danh mục cha </th>
-                <td mat-cell *matCellDef="let element"> {{element.parent_id}} </td>
             </ng-container>
 
             <!-- parent_title Column -->
@@ -35,9 +29,10 @@
                 <th mat-header-cell *matHeaderCellDef> Hành động </th>
                 <td mat-cell *matCellDef="let element">
                     <div class="flex justify-center items-center">
-                        <button
-                            class="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-yellow-500 text-white shadow-md shadow-gray-900/10 hover:shadow-lg mr-3 hover:shadow-gray-900/20 active:opacity-[0.85]"
-                            type="button">
+                        <button (click)="openDialog(element)" class=" align-middle select-none font-sans font-bold text-center uppercase transition-all
+                            disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6
+                            rounded-lg bg-yellow-500 text-white shadow-md shadow-gray-900/10 hover:shadow-lg mr-3
+                            hover:shadow-gray-900/20 active:opacity-[0.85]" type="button">
                             <i class="fa-solid fa-wrench"></i>
                         </button>
                         <button

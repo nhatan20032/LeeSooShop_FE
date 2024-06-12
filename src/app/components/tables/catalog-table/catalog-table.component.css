@@ -1,8 +1,6 @@
 table {
   width: 100%;
-  text-align: center !important;
 }
-
 .mdc-data-table__header-cell {
   text-align: center !important;
 }
