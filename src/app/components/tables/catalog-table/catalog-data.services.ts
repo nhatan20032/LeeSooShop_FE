@@ -28,7 +28,7 @@ interface ApiResponse {
     providedIn: 'root'
 })
 export class CatalogServices {
-    private apiUrl = 'https://localhost:44317/Catalog';  // Thay thế bằng URL API của bạn
+    private apiUrl = 'https://localhost:44317/Catalog';
 
     constructor(private http: HttpClient) { }
 
