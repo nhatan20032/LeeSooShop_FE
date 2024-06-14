@@ -72,4 +72,11 @@ export class ModifiedDialogComponent implements OnInit {
             }
         );
     }
+    onDelete(id: number): void {
+        this.dataService.deleteCatalog(id).subscribe(response => {
+            console.log('Catalog deleted successfully:', response);
+        }, error => {
+            console.error('Error deleting catalog:', error);
+        });
+    }
 }

@@ -58,4 +58,8 @@ export class CatalogServices {
     modifiedCatalog(catalog: CatalogData): Observable<any> {
         return this.http.put<any>(`${this.apiUrl}/Update`, catalog);
     }
+
+    deleteCatalog(id: number): Observable<any> {
+        return this.http.delete<any>(`${this.apiUrl}/Delete/${id}`);
+    }
 }
