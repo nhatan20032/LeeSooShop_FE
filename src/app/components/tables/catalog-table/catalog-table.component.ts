@@ -36,7 +36,7 @@ export class CatalogTableComponent implements AfterViewInit, OnInit {
 
         dialogRef.afterClosed().subscribe((result: CatalogElement) => {
             if (result) {
-                this.loadElements(0, this.paginator.pageSize, this.search);
+                this.loadElements(0, -1, this.search);
             }
         });
     }
