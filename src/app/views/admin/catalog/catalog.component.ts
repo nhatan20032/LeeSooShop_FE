@@ -27,4 +27,9 @@ export class CatalogComponent implements OnInit {
             }
         );
     }
+
+    onSearchChange(newSearch: string): void {
+        this.search = newSearch;
+        this.loadElements(0, -1, this.search);
+    }
 }

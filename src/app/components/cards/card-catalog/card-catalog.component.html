@@ -18,7 +18,7 @@
             <div class="flex-grow mb-12 xl:mb-0 px-4">
                 <mat-form-field class="w-full">
                     <mat-label>Tìm kiếm</mat-label>
-                    <input matInput class="w-full" placeholder="Ví dụ: Đồ chơi A">
+                    <input matInput class="w-full" placeholder="Ví dụ: Đồ chơi A" (input)="onSearchInputChange($event)">
                 </mat-form-field>
             </div>
         </div>
