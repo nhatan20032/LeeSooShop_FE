@@ -1,0 +1,20 @@
+<h2 mat-dialog-title>
+    Xoá danh mục:
+    <span class="text-red-500">{{default_title}}</span>
+</h2>
+<mat-dialog-content>
+    <p>Bạn có sẵn sàng để xoá danh mục này chứ ???</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button (click)="onNoClick()" class=" align-middle select-none font-sans font-bold text-center uppercase transition-all
+                            disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6
+                            rounded-lg bg-red-500 text-white shadow-md shadow-gray-900/10 hover:shadow-lg mr-3
+                            hover:shadow-gray-900/20 active:opacity-[0.85]" type="button">
+        <i class="fa-solid fa-ban"></i>
+    </button>
+    <button (click)="deleteCatalog()"
+        class="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-yellow-500 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85]"
+        type="button">
+        <i class="fa-solid fa-check"></i>
+    </button>
+</mat-dialog-actions>

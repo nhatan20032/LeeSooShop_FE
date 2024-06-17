@@ -1,6 +1,5 @@
-import { Component, Inject, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import {
-    MAT_DIALOG_DATA,
     MatDialogRef,
     MatDialogTitle,
     MatDialogContent,
@@ -16,7 +15,7 @@ import { CatalogElement, CatalogServices, CatalogData } from "../../../../views/
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 @Component({
-    selector: "app-modified-dialog",
+    selector: "app-created-dialog",
     templateUrl: "./created-dialog.component.html",
     standalone: true,
     imports: [

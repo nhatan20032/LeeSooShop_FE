@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ModifiedDialogComponent } from '../../dialogs/catalog-dialogs/modified-dialog/modified-dialog.component';
-import { CatalogComponent } from '../../../views/admin/catalog/catalog.component';
+import { DeleteDialogComponent } from '../../dialogs/catalog-dialogs/delete-dialog/delete-dialog.component';
 
 /**
  * @title Table with pagination
@@ -30,7 +30,7 @@ export class CatalogTableComponent implements AfterViewInit, OnInit {
 
     @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-    constructor(private dataService: CatalogServices, private dialog: MatDialog) { }
+    constructor(private dialog: MatDialog) { }
 
     openModifiedDialog(element: CatalogElement): void {
         const dialogRef = this.dialog.open(ModifiedDialogComponent, {
@@ -39,6 +39,18 @@ export class CatalogTableComponent implements AfterViewInit, OnInit {
 
         dialogRef.afterClosed().subscribe((result: CatalogElement) => {
             if (result) {
+                this.loadElements(0, -1, this.search);
+            }
+        });
+    }
+
+    openDeleteDialog(element: CatalogElement): void {
+        const dialogRef = this.dialog.open(DeleteDialogComponent, {
+            data: element
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            if (result === true) {
                 this.loadElements(0, -1, this.search);
             }
         });
