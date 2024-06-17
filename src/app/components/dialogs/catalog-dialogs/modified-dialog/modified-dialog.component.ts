@@ -14,6 +14,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CatalogElement, CatalogServices, CatalogData } from "../../../../views/admin/catalog/catalog-data.services";
 import { MatSelectModule } from '@angular/material/select';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 @Component({
     selector: "app-modified-dialog",
     templateUrl: "./modified-dialog.component.html",
@@ -28,7 +29,8 @@ import { MatSelectModule } from '@angular/material/select';
         MatDialogContent,
         MatDialogActions,
         MatDialogClose,
-        MatSelectModule
+        MatSelectModule,
+        MatSnackBarModule
     ],
 })
 export class ModifiedDialogComponent implements OnInit {
@@ -38,7 +40,8 @@ export class ModifiedDialogComponent implements OnInit {
     constructor(
         public dialogRef: MatDialogRef<ModifiedDialogComponent>,
         @Inject(MAT_DIALOG_DATA) public data: CatalogElement,
-        private dataService: CatalogServices
+        private dataService: CatalogServices,
+        private snackBar: MatSnackBar
     ) { }
     ngOnInit(): void {
         this.loadCatalogs();
@@ -64,11 +67,11 @@ export class ModifiedDialogComponent implements OnInit {
         };
         this.dataService.modifiedCatalog(updatedCatalog).subscribe(
             response => {
-                console.log("Catalog created successfully", response);
+                this.snackBar.open('Sửa danh mục thành công!', 'Đóng', { duration: 3000 });
                 this.dialogRef.close(updatedCatalog);
             },
             error => {
-                console.error("Error edit catalog", error, updatedCatalog);
+                this.snackBar.open('Sửa danh mục thất bại', 'Đóng', { duration: 3000 });
             }
         );
     }

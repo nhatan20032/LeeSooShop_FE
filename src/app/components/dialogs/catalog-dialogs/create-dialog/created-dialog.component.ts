@@ -14,6 +14,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CatalogElement, CatalogServices, CatalogData } from "../../../../views/admin/catalog/catalog-data.services";
 import { MatSelectModule } from '@angular/material/select';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 @Component({
     selector: "app-modified-dialog",
     templateUrl: "./created-dialog.component.html",
@@ -28,20 +29,22 @@ import { MatSelectModule } from '@angular/material/select';
         MatDialogContent,
         MatDialogActions,
         MatDialogClose,
-        MatSelectModule
+        MatSelectModule,
+        MatSnackBarModule
     ],
 })
 export class CreatedDialogComponent implements OnInit {
     catalogs: CatalogElement[] = [];
     selectedCatalog: number | null = null;
+    title: string = '';
+    description: string = '';
     constructor(
         public dialogRef: MatDialogRef<CreatedDialogComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: CatalogElement,
-        private dataService: CatalogServices
+        private dataService: CatalogServices,
+        private snackBar: MatSnackBar
     ) { }
     ngOnInit(): void {
         this.loadCatalogs();
-        this.selectedCatalog = this.data.parent_id;
     }
     loadCatalogs(): void {
         this.dataService.getParentElements().subscribe(response => {
@@ -54,12 +57,21 @@ export class CreatedDialogComponent implements OnInit {
         this.dialogRef.close();
     }
     onCreated(): void {
-        const created: CatalogData = {
-            id: this.data.id,
-            parent_id: this.selectedCatalog,
-            title: this.data.catalog_title,
-            description: this.data.description
+        const newCatalog: CatalogData = {
+            id: 0,
+            parent_id: this.selectedCatalog ?? 0,
+            title: this.title,
+            description: this.description
         };
-        console.log(created);
+        this.dataService.createdCatalog(newCatalog).subscribe(
+            response => {
+                this.snackBar.open('Tạo danh mục thành công!', 'Đóng', { duration: 3000 });
+                this.dialogRef.close(response);
+            },
+            error => {
+                console.error('Error creating catalog', error);
+                this.snackBar.open('Tạo danh mục thất bại', 'Đóng', { duration: 3000 });
+            }
+        );
     }
 }

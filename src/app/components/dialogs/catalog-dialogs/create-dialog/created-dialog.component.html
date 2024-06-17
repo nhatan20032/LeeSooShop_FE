@@ -4,7 +4,7 @@
 <mat-dialog-content>
     <mat-form-field class="w-full">
         <mat-label>No.</mat-label>
-        <input matInput [(ngModel)]="data.id" disabled="true" value="Tự động">
+        <input matInput disabled="true" value="Tự động">
     </mat-form-field>
     <mat-form-field class="w-full">
         <mat-label>Danh mục cha</mat-label>
@@ -16,11 +16,11 @@
     </mat-form-field>
     <mat-form-field class="w-full">
         <mat-label>Tên danh mục</mat-label>
-        <input matInput [(ngModel)]="data.catalog_title">
+        <input matInput [(ngModel)]="title">
     </mat-form-field>
     <mat-form-field class="w-full">
         <mat-label>Mô tả</mat-label>
-        <textarea matInput [(ngModel)]="data.description"></textarea>
+        <textarea matInput [(ngModel)]="description"></textarea>
     </mat-form-field>
 </mat-dialog-content>
 <mat-dialog-actions align="end">

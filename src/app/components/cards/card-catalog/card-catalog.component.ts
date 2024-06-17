@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, Input, OnInit, ViewChild } from "@angular/core";
 
 
 import { MatInputModule } from '@angular/material/input';
@@ -8,6 +8,7 @@ import { CatalogElement, CatalogServices } from "../../../views/admin/catalog/ca
 import { CatalogTableComponent } from "../../tables/catalog-table/catalog-table.component";
 import { CreatedDialogComponent } from "../../dialogs/catalog-dialogs/create-dialog/created-dialog.component";
 import { CatalogComponent } from "../../../views/admin/catalog/catalog.component";
+import { MatTableDataSource } from "@angular/material/table";
 
 @Component({
     selector: "app-card-catalog",
@@ -19,21 +20,22 @@ import { CatalogComponent } from "../../../views/admin/catalog/catalog.component
     ],
 })
 export class CardCatalogComponent implements OnInit {
-
+    @Input() dataSource!: MatTableDataSource<CatalogElement>;
+    @Input() totalElements: number = 0;
+    @Input() search: string = '';
+    @Input() loadElements!: (offset: number, limit: number, search: string) => void;
     @ViewChild(CatalogComponent) catalog!: CatalogComponent;
 
     constructor(private dataService: CatalogServices, private dialog: MatDialog) { }
 
     ngOnInit(): void { }
 
-    openCreatedDialog(element: CatalogElement): void {
-        const dialogRef = this.dialog.open(CreatedDialogComponent, {
-            data: element
-        });
+    openCreatedDialog(): void {
+        const dialogRef = this.dialog.open(CreatedDialogComponent);
 
         dialogRef.afterClosed().subscribe((result: CatalogElement) => {
             if (result) {
-                this.catalog.loadElements(0, -1, "");
+                this.loadElements(0, -1, this.search);
             }
         });
     }

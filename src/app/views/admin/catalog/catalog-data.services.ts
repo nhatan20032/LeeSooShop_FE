@@ -59,6 +59,10 @@ export class CatalogServices {
         return this.http.put<any>(`${this.apiUrl}/Update`, catalog);
     }
 
+    createdCatalog(catalog: CatalogData): Observable<any> {
+        return this.http.post<any>(`${this.apiUrl}/Create`, catalog);
+    }
+
     deleteCatalog(id: number): Observable<any> {
         return this.http.delete<any>(`${this.apiUrl}/Delete/${id}`);
     }
