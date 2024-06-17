@@ -1,13 +1,14 @@
 import { AfterViewInit, Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { CatalogElement, CatalogServices } from './catalog-data.services';
+import { CatalogElement, CatalogServices } from '../../../views/admin/catalog/catalog-data.services';
 import { MatDialog } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ModifiedDialogComponent } from '../../dialogs/catalog-dialogs/modified-dialog/modified-dialog.component';
+import { CatalogComponent } from '../../../views/admin/catalog/catalog.component';
 
 /**
  * @title Table with pagination
@@ -26,41 +27,27 @@ export class CatalogTableComponent implements AfterViewInit, OnInit {
     search: string = '';
 
     @ViewChild(MatPaginator) paginator!: MatPaginator;
+    @ViewChild(CatalogComponent) catalog!: CatalogComponent;
 
     constructor(private dataService: CatalogServices, private dialog: MatDialog) { }
 
-    openDialog(element: CatalogElement): void {
+    openModifiedDialog(element: CatalogElement): void {
         const dialogRef = this.dialog.open(ModifiedDialogComponent, {
             data: element
         });
 
         dialogRef.afterClosed().subscribe((result: CatalogElement) => {
             if (result) {
-                this.loadElements(0, -1, this.search);
+                this.catalog.loadElements(0, -1, this.search);
             }
         });
     }
 
     ngOnInit(): void {
-        this.loadElements(0, -1, this.search);
+        this.catalog.loadElements(0, -1, this.search);
     }
 
     ngAfterViewInit() {
         this.dataSource.paginator = this.paginator;
     }
-
-    loadElements(offset: number, limit: number, search: string) {
-        this.dataService.getElements(offset, limit, search).subscribe(
-            (response: any) => {
-                this.dataSource.data = response.data;
-                this.totalElements = response.total;
-            }
-        );
-    }
-    onSearch(event: any) {
-        const value = event.target.value;
-        this.search = value;
-        this.loadElements(0, this.paginator.pageSize, this.search);
-    }
-
 }

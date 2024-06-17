@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { CatalogElement, CatalogServices, CatalogData } from "../../../tables/catalog-table/catalog-data.services";
+import { CatalogElement, CatalogServices, CatalogData } from "../../../../views/admin/catalog/catalog-data.services";
 import { MatSelectModule } from '@angular/material/select';
 @Component({
     selector: "app-modified-dialog",

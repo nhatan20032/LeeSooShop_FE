@@ -20,7 +20,7 @@ import { BrandComponent } from './views/admin/brand/brand.component';
 import { AgeComponent } from './views/admin/age/age.component';
 import { DiscountProductComponent } from './views/admin/discounts/discount-product/discount-product.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { CatalogServices } from './components/tables/catalog-table/catalog-data.services';
+import { CatalogServices } from './views/admin/catalog/catalog-data.services';
 
 @NgModule({
   declarations: [
