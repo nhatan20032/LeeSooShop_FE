@@ -65,4 +65,9 @@ export class CatalogTableComponent implements AfterViewInit, OnInit {
             this.dataSource.paginator = this.paginator;
         }
     }
+
+    onSearchChange(newSearch: string): void {
+        this.search = newSearch;
+        this.loadElements(0, -1, this.search);
+    }
 }
