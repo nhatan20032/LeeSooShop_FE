@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { CatalogTableComponent } from "../../../components/tables/catalog-table/catalog-table.component";
 import { CardCatalogComponent } from "../../../components/cards/card-catalog/card-catalog.component";
 import { CatalogElement, CatalogServices } from "./catalog-data.services";
-import { MatDialog } from "@angular/material/dialog";
 import { MatTableDataSource } from "@angular/material/table";
 
 @Component({

@@ -26,7 +26,7 @@ export class CardCatalogComponent implements OnInit {
 
     ngOnInit(): void { }
 
-    openModifiedDialog(element: CatalogElement): void {
+    openCreatedDialog(element: CatalogElement): void {
         const dialogRef = this.dialog.open(CreatedDialogComponent, {
             data: element
         });

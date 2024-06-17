@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild, Inject } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild, Input } from '@angular/core';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { CatalogElement, CatalogServices } from '../../../views/admin/catalog/catalog-data.services';
@@ -21,13 +21,14 @@ import { CatalogComponent } from '../../../views/admin/catalog/catalog.component
     imports: [MatTableModule, MatPaginatorModule, MatFormFieldModule, MatInputModule, FormsModule, MatButtonModule],
 })
 export class CatalogTableComponent implements AfterViewInit, OnInit {
+    @Input() dataSource!: MatTableDataSource<CatalogElement>;
+    @Input() totalElements: number = 0;
+    @Input() search: string = '';
+    @Input() loadElements!: (offset: number, limit: number, search: string) => void;
+
     displayedColumns: string[] = ['id', 'parent_title', 'catalog_title', 'description', 'action'];
-    dataSource = new MatTableDataSource<CatalogElement>([]);
-    totalElements: number = 0;
-    search: string = '';
 
     @ViewChild(MatPaginator) paginator!: MatPaginator;
-    @ViewChild(CatalogComponent) catalog!: CatalogComponent;
 
     constructor(private dataService: CatalogServices, private dialog: MatDialog) { }
 
@@ -38,16 +39,18 @@ export class CatalogTableComponent implements AfterViewInit, OnInit {
 
         dialogRef.afterClosed().subscribe((result: CatalogElement) => {
             if (result) {
-                this.catalog.loadElements(0, -1, this.search);
+                this.loadElements(0, -1, this.search);
             }
         });
     }
 
     ngOnInit(): void {
-        this.catalog.loadElements(0, -1, this.search);
+        this.loadElements(0, -1, this.search);
     }
 
     ngAfterViewInit() {
-        this.dataSource.paginator = this.paginator;
+        if (this.dataSource) {
+            this.dataSource.paginator = this.paginator;
+        }
     }
 }

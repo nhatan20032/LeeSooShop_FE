@@ -32,8 +32,34 @@ import { MatSelectModule } from '@angular/material/select';
     ],
 })
 export class CreatedDialogComponent implements OnInit {
+    catalogs: CatalogElement[] = [];
+    selectedCatalog: number | null = null;
     constructor(
+        public dialogRef: MatDialogRef<CreatedDialogComponent>,
+        @Inject(MAT_DIALOG_DATA) public data: CatalogElement,
+        private dataService: CatalogServices
     ) { }
     ngOnInit(): void {
+        this.loadCatalogs();
+        this.selectedCatalog = this.data.parent_id;
+    }
+    loadCatalogs(): void {
+        this.dataService.getParentElements().subscribe(response => {
+            this.catalogs = response.data;
+        }, error => {
+            console.error('Error loading catalogs', error);
+        });
+    }
+    onNoClick(): void {
+        this.dialogRef.close();
+    }
+    onCreated(): void {
+        const created: CatalogData = {
+            id: this.data.id,
+            parent_id: this.selectedCatalog,
+            title: this.data.catalog_title,
+            description: this.data.description
+        };
+        console.log(created);
     }
 }
