@@ -20,7 +20,7 @@ interface ApiResponse {
 @Injectable({
     providedIn: 'root'
 })
-export class CatalogServices {
+export class BrandServices {
     private apiUrl = 'https://localhost:44317/Brand';
 
     constructor(private http: HttpClient) { }
